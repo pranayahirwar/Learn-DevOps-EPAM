@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  nginx-with-static-ip: #name of service
+    image: nginx:latest
+    container_name: nginx_container
+    networks: #specifying which ip-address docker should assign our nginx container
+      nginx_network:
+        ipv4_address: 172.40.0.2
+    ports:
+      - "8080:80"
+    restart: always
+
+networks:
+  nginx_network:
+    driver: bridge
+    ipam: #using this to specify more details about our-bridge network
+      config:
+        - subnet: 172.40.0.0/16
+          gateway: 172.40.0.1
