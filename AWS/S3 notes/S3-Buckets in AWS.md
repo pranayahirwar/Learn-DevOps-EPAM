@@ -65,26 +65,25 @@ Below are following ways in which we can secure objects in our S3 bucket althoug
         - **Write ACP**: Allows grantee to write the bucket or object ACL
         - **Full Control**: Allows grantee to perform all of the above actions
 
+Simple bucket policy to give public access, Json doen't support comments.
+
 ```json
-#Simple bucket policy to give public access.
 {
-  "Id": "StaticWebPolicy",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "S3GetObjectAllow",
-      "Action": [
-        "s3:GetObject",
-      ],
-      "Effect": "Allow",
-      "Resource": "arn:aws:s3:::bucket-name/*",
-      "Principal": "*"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Id": "StaticWebPolicy",
+    "Statement": [
+        {
+            "Sid": "S3GetObjectAllow",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::your-bucketname/*"
+        }
+    ]
 }
 ```
 
-[Practical→ Creating Bucket Policy to access objects from internet.](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Practical%E2%86%92%20Creating%20Bucket%20Policy%20to%20access%20object.md)
+[Practical→ Creating Bucket Policy to access objects from internet.](S3-Buckets%20in%20AWS/Practical%E2%86%92%20Creating%20Bucket%20Policy%20to%20access%20object.md)
 
 ---
 
@@ -92,7 +91,7 @@ Below are following ways in which we can secure objects in our S3 bucket althoug
 
 It is like GitHub page where you just have to upload your file in repository (in GitHub) or S3 (in aws), the you just have to enable Static Website Hosting.
 
-[Practical - Hosting a static website](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Practical%20-%20Hosting%20a%20static%20website.md)
+[Practical - Hosting a static website](S3-Buckets%20in%20AWS/Practical%20-%20Hosting%20a%20static%20website.md)
 
 <aside>
 💡 It is a good practice if you are hosting a website using bucket, so place only website related thing in bucket. Place index file at the root of the bucket (it means don’t place index.html inside some folder.)
@@ -105,7 +104,7 @@ It is like GitHub page where you just have to upload your file in repository (in
 
 In simple term if you reupload the same file with same name, doesn’t matter information inside the file is changed or not, it will create a new version history (which mean all the files will be save in S3 without overwriting it)
 
-![Untitled](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Untitled.png)
+![Untitled](S3-Buckets%20in%20AWS/Untitled.png)
 
 - If file1, file2, file3 are present in bucket and versioning is applied after uploading these file, their base version ID will be NULL
 - When objects are deleted in which `versioning` is enabled, a `delete marker` will be placed over the object, but it doesn’t mean we cannot delete object PERMANENTLY.
@@ -156,7 +155,7 @@ Why we need it?
     - Log collection
     - live replication b/w production and test environment.
 
-[Lab - How to enable replication.](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Lab%20-%20How%20to%20enable%20replication.md)
+[Lab - How to enable replication.](S3-Buckets%20in%20AWS/Lab%20-%20How%20to%20enable%20replication.md)
 
 ---
 
@@ -176,7 +175,7 @@ S3 Glacier → Used for storing archive data where you know, if you need this da
 
 S3 Glacier Deep Archive → Used for Archive, max data retrieval time 48hrs (although is not always it depend on data size and age.)
 
-![Untitled](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Untitled%201.png)
+![Untitled](S3-Buckets%20in%20AWS/Untitled%201.png)
 
 Enabling lifecycle policy
 
@@ -208,7 +207,7 @@ Snow family offer two things
 
 Reason why we need Snow Family
 
-![Untitled](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Untitled%202.png)
+![Untitled](S3-Buckets%20in%20AWS/Untitled%202.png)
 
 <aside>
 💡 Rule of thumb for using snow family, if it take more than week to transfer data then you can use snow family.
@@ -242,7 +241,7 @@ Snow Mobile → Its a truck which will transfer your data which can be ( 100PB =
 
 </aside>
 
-![Untitled](S3-Buckets%20in%20AWS%20a5ecc366172641009878bca6f7f7844b/Untitled%203.png)
+![Untitled](S3-Buckets%20in%20AWS/Untitled%203.png)
 
 > For using snow device when it arrive we need to install OpsHub, its a GUI for transferring data and using EC2 or Lambda functions.
 > 
