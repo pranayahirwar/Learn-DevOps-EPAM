@@ -135,7 +135,7 @@ To find access log setting, navigate to `Properties tab` and scroll down.
 
 **************CRR → Cross Region Replication →**************  When you are saving data in Mumbai (Asia Pacific region) and as an backup saving the same data in US East (N. Virginia)
 
-************SRR (Same Region Replication) →************ When you are saving data in Mumbai (Asia Pacific region) and want to store data in Tokyo (Asia Pacific region)
+************SRR (Same Region Replication) →************ When you are saving data in Mumbai-A AZ (Asia Pacific region) and want to store data in Mumbai-B AZ (Asia Pacific region)
 
 - Versioning need to enabled on both the buckets
 - Its an Asynchronous replication - it will happen in background.
